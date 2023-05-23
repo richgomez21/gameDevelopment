@@ -2,7 +2,8 @@ let ball, paddle;
 
 function setup(){
     createCanvas(500, 500);
-    ball = new Ball(width / 2, height / 2, 50, 50, 2, 3)
+    ball = new Ball(width / 2, height / 2, 50, 50, 2, 3);
+    paddle = new Paddle(400, 400, 50, 50);
 }
 
 function draw(){
@@ -12,6 +13,9 @@ function draw(){
     ball.update();
     //then redraw the balll at the new position
     ball.draw();
+
+    paddle.update(ball);
+    paddle.draw();
 }
 
 class Ball{
@@ -51,5 +55,21 @@ class Ball{
         if(this.hasHitTopBottomWall()){
             this.yVelocity = -this.yVelocity;
         }
+    }
+}
+class Paddle{
+    constructor(x, y, width, height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    draw(){
+        rect(this.x, this.y, this.width, this.height);
+    }
+    
+    update(ball){
+        this.y = ball.y - this.height / 2;
     }
 }
