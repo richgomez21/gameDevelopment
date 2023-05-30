@@ -3,7 +3,7 @@ let ball, paddle;
 function setup(){
     createCanvas(500, 500);
     ball = new Ball(width / 2, height / 2, 50, 50, 2, 3);
-    paddle = new Paddle(400, 400, 50, 50);
+    paddle = new Paddle(400, 400, 20, 120);
 }
 
 function draw(){
