@@ -4,18 +4,12 @@ let leftPaddleImg = null;
 let rightPaddleImg = null;
 
 
-function preload(){
-    bgImg = loadImage('./assets/snowy_mountains.png');
-    leftPaddleImg = loadImage('./assets/red_saber.png');
-    rightPaddleImg = loadImage('./assets/blue_saber.png');
-}
-
 function setup(){
     createCanvas(500, 500);
 
     //create paddles and ball
-    leftPaddle = new Paddle(leftPaddleImg, 10, height / 2);
-    rightPaddle = new Paddle(rightPaddleImg, width - 20, height / 2, UP_ARROW, DOWN_ARROW);
+    leftPaddle = new Paddle(10, height / 2);
+    rightPaddle = new Paddle(width - 20, height / 2, UP_ARROW, DOWN_ARROW);
 
     ball = new Ball(width / 2, height / 2);
 
@@ -39,7 +33,7 @@ function draw(){
     }
 };
 
-class Ball{
+class  Ball{
     constructor(x, y){
         this.x = x;
         this.y = y;
@@ -91,6 +85,30 @@ class Ball{
                                         this.x < paddle.x + paddle.width && this.x > paddle.x);
         return withinVerticalRange && withinHorizontalRange;
     }
+    
+    // hits(paddle){
+    //     let result = false;
+                        
+    //     //is it within vertical range
+    //     if(this.y > paddle.y && this.y < paddle.y + paddle.height){
+    //         //is it in horizontal range
+    //         if(this.xVelocity > 0){
+    //             //moving right
+    //             if(this.x > paddle.x &&this.x < paddle.x + paddle.width){
+    //                 //return true;
+    //                 result = true;
+    //             }
+
+    //         }else if(this.x < paddle.x + paddle.width && this.x > paddle.x){
+    //             //moving left
+    //             //return false;
+    //             result = true;
+    //         }
+
+    //     }
+    //     return result;
+        
+    // }
 
     changeDirection(){
         this.xVelocity = -this.xVelocity;
@@ -99,7 +117,7 @@ class Ball{
 }
 
 class Paddle{
-    constructor(paddleImg, x, y, upKey = null, downKey = null){
+    constructor(x, y, upKey = null, downKey = null){
         this.x = x;
         this.y = y;
         this.width = 10;
@@ -107,7 +125,6 @@ class Paddle{
         this.speed = 5;
         this.upKey = upKey;
         this.downKey = downKey;
-        this.paddleImg = paddleImg;
     }
 
     update(ball){
@@ -131,6 +148,6 @@ class Paddle{
 
     draw(){
         fill(255);
-        image(this.paddleImg, this.x, this.y, this.width, this.height);
+        rect(this.x, this.y, this.width, this.height);
     }
 }
