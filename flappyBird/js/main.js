@@ -4,6 +4,7 @@ const SPACE_BAR = 32;
 const FRAME_AMOUNT = 100;
 function setup() {
 createCanvas(400, 600);
+
     //create the bird
 bird = new Bird();
 //populate the pipes array with one PipePair initially to start
@@ -13,7 +14,7 @@ pipes.push(new PipePair())
 function draw() {
     background(0);
     bird.draw();
-    bird.update();
+    bird.update(); 
 //draw and update the bird
 //add a new PipePair every FRAME_AMOUNT frames
 if(frameCount % FRAME_AMOUNT === 0){
