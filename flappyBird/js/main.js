@@ -11,16 +11,29 @@ bird = new Bird();
 pipes.push(new PipePair())
 
 }
-function draw() {
+function draw() {  
     background(0);
     bird.draw();
     bird.update(); 
 //draw and update the bird
 //add a new PipePair every FRAME_AMOUNT frames
-if(frameCount % FRAME_AMOUNT === 0){
-//add pipes
-}
+  if(frameCount % FRAME_AMOUNT === 0){
+  //add pipes
+    pipes.push(new PipePair());
+  }
+  for(var i = 0; i < pipes.length; i++){
+    pipes[i].draw();
+    pipes[i].update();
+
+    if(pipes[i].isOffScreen()){
+      pipes.splice(i, 1);
+    }
+    if(pipes[i].hits(bird)){
+      console.log("HIT");
+    }
+  }
 //render the pipes
+
 }
 
 function keyPressed() {
@@ -29,25 +42,28 @@ function keyPressed() {
     }
   }
 
-/*
+/*  
 Add one new PipePair to the pipes array
 */
 function addPipes(){
+  pipes.push(new PipePair());
 }
 /*
 Removes the pipe from the given index.
 Use this method to remove pipes as they leave the screen
 */
 function removePipe(pipeIndex){
+  
 }
 /*
 Will add PipePairs to the pipes array, draw the pipes, update the pipes,
 detect collisions, and remove pipes once they leave the screen.
 */
 function renderPipes(){
-for(let i = pipes.length - 1; i >= 0; i--){
+  for(let i = pipes.length - 1; i >= 0; i--){
 //perform necessary operations described above in here.
-}
+    
+  }
 }
 /*
 Detects collisions between the bird and the PipePairs
