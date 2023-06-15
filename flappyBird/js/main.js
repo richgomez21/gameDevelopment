@@ -24,12 +24,9 @@ function draw() {
   for(var i = 0; i < pipes.length; i++){
     pipes[i].draw();
     pipes[i].update();
-
+    pipes[i].hits(bird)
     if(pipes[i].isOffScreen()){
       pipes.splice(i, 1);
-    }
-    if(pipes[i].hits(bird)){
-      console.log("HIT");
     }
   }
 //render the pipes
