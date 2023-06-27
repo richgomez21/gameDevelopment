@@ -68,6 +68,7 @@ function handleVerticalCollisions(platform) {
         if (player.bottomEdge() > platform.y && player.y < platform.y) { // Top collision
             player.y = platform.y - player.diameter;
             player.velocity = 0;
+            
         } else if (player.yMinusDiameter() < platform.yPlusHeight() && player.yMinusDiameter() > platform.y) { // Bottom collision
             player.y = platform.yPlusHeight() + player.diameter;
             player.velocity = 0;
