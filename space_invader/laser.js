@@ -30,7 +30,7 @@ class Laser{
     }
 
     hits(enemy){
-
+        return this.x += enemy
     }
 
 }

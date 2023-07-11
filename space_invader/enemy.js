@@ -9,14 +9,40 @@ class Enemy{
         this.y = y;
         this.size = Enemy.SIZE;
         this.xVelocity = Enemy.X_VELOCITY;
-        this.hitEdghe = false;
+        this.hitEdge = false;
     }
 
     draw(){
+        fill("black");
         rect(this.x, this.y, this.size, this.size);
     }
 
     update(){
-
+        this.x += Enemy.X_VELOCITY;
     }
+		
+    /*
+        The following are suggested methods to implement. You can
+        take another approach, but these are some to consider if you
+        become stuck.
+    */
+    
+    
+    sideEdge(){
+       return this.x + this.size;
+    }
+
+    bottomEdge(){
+        
+    }
+
+
+    hasHitSideOfScreen(){
+        
+    }
+        
+    dropAndReverseDirection(){
+        
+    }
+    
 }
