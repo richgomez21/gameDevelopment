@@ -3,6 +3,7 @@ class Enemy{
     static SIZE = 40;
     static X_VELOCITY = 1;
     static DROP = 40;
+  
 
     constructor(x, y){
         this.x = x;
@@ -10,6 +11,7 @@ class Enemy{
         this.size = Enemy.SIZE;
         this.xVelocity = Enemy.X_VELOCITY;
         this.hitEdge = false;
+      
     }
 
     draw(){
@@ -27,9 +29,14 @@ class Enemy{
         become stuck.
     */
     
+        
     
     sideEdge(){
-       return this.x + this.size;
+        const hitLeftSide = this.x <= 0;
+        const hitRightSide = this.x >= width;
+        if(hitRightSide || hitLeftSide){
+            velocity.x = -velocity.x;
+        }
     }
 
     bottomEdge(){

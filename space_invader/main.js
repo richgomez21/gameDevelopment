@@ -75,6 +75,13 @@ function renderEnemies(){
     }
 }
 
+function checkEnemyHit(laser, laserIndex){
+    for(let i = 0; i < laser.length; i++ ){
+
+    }
+    
+}
+
     /*
         The following are suggested methods to implement. You can
         take another approach, but these are some to consider if you
@@ -93,9 +100,7 @@ function renderEnemies(){
     function dropEnemiesAndReverseDirection(){
         
     }
-
-    function checkEnemyHit(laser, laserIndex){
-        // Check if laser hits any enemy
-        
-    }
     */
+
+    
+    
