@@ -20,7 +20,7 @@ class Enemy{
     }
 
     update(){
-        this.x += Enemy.X_VELOCITY;
+        this.x += this.xVelocity;
     }
 		
     /*
@@ -29,27 +29,13 @@ class Enemy{
         become stuck.
     */
     
-        
-    
-    sideEdge(){
-        const hitLeftSide = this.x <= 0;
-        const hitRightSide = this.x >= width;
-        if(hitRightSide || hitLeftSide){
-            velocity.x = -velocity.x;
-        }
+    leftEdge(){
+        return this.x <= 0;
     }
 
-    bottomEdge(){
-        
-    }
-
-
-    hasHitSideOfScreen(){
-        
+    rightEdge(){
+        return this.x + this.size >= width;
     }
         
-    dropAndReverseDirection(){
-        
-    }
     
 }

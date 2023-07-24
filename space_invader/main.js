@@ -29,13 +29,14 @@ function draw(){
     player.draw();
     player.move();
 
-    renderLasers();
+    renderLasers(); 
     renderEnemies();
+ 
 } 
 
 function createEnemyGrid(){
    //create grid of enemies
-   for(let i = 0; i < ENEMY_COLS; i++){
+   for(let i = 0; i < ENEMY_COLS; i++){ 
         for(let j = 0; j < ENEMY_ROWS; j++){
             enemies.push(new Enemy(i * 80 + 80, j * 60 + 60));
         
@@ -53,6 +54,9 @@ function renderLasers(){
         //remove from array
         lasers.splice(i, 1);
      }
+     if(lasers[i].hits()){
+        console.log("hit");
+     }
    }
     
 }
@@ -69,15 +73,27 @@ function renderEnemies(){
     for(let i = enemies.length - 1; i >= 0; i--){
         enemies[i].update();
         enemies[i].draw();
-        // if(lasers[i].hits(enemies[i])){
-        //     console.log("hit");
-        // }
+        
+        if(enemies[i].rightEdge() || enemies[i].leftEdge()){
+            dropAndReverseDirection(enemies);
+        }
     }
 }
 
+function dropAndReverseDirection(enemyarr){
+    for(let i = 0; i < enemies.length; i++){
+        enemies[i].y += Enemy.DROP;
+        enemies[i].xVelocity = -enemies[i].xVelocity;
+    }
+  
+    
+}
+
+
+
 function checkEnemyHit(laser, laserIndex){
     for(let i = 0; i < laser.length; i++ ){
-
+        
     }
     
 }
@@ -90,16 +106,6 @@ function checkEnemyHit(laser, laserIndex){
         being next to each other) for organization and readability of you code.
         
         Remember to consider where these methods should be called as well.
-    */
-
-    /*
-    function renderEnemies(){
-        // Update and draw all enemies		    
-    }
-
-    function dropEnemiesAndReverseDirection(){
-        
-    }
     */
 
     
