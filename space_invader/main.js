@@ -82,33 +82,19 @@ function dropAndReverseDirection(enemyarr){
         enemies[i].y += Enemy.DROP;
         enemies[i].xVelocity = -enemies[i].xVelocity;
     }
-  
-    
 }
 
 
 
 function checkEnemyHit(laser, laserIndex){
     for(let i = enemies.length - 1; i >= 0; i-- ){
-    if(laser.hits(enemies[i])){
-        Enemy.explosionSound.play();
-        lasers.splice(laserIndex, 1);
-        enemies.splice(i,1);
-        return; 
-    }
+        if(laser.hits(enemies[i])){
+            Enemy.explosionSound.play();
+            lasers.splice(laserIndex, 1);
+            enemies.splice(i,1);
+            return; 
+        }
+    }   
 }
-    
-}
-
-    /*
-        The following are suggested methods to implement. You can
-        take another approach, but these are some to consider if you
-        become stuck. It would be good to group these functions next to
-        others that are doing similar things (such as all the enemy functions
-        being next to each other) for organization and readability of you code.
-        
-        Remember to consider where these methods should be called as well.
-    */
-
     
     
