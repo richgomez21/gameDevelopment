@@ -1,8 +1,8 @@
 
 class Enemy{
-    static SIZE = 40;
-    static X_VELOCITY = 1;
-    static DROP = 40;
+    static SIZE = 30;
+    static X_VELOCITY = .5;
+    static DROP = 30;
   
 
     constructor(x, y){
@@ -23,12 +23,6 @@ class Enemy{
         this.x += this.xVelocity;
     }
 		
-    /*
-        The following are suggested methods to implement. You can
-        take another approach, but these are some to consider if you
-        become stuck.
-    */
-    
     leftEdge(){
         return this.x <= 0;
     }
@@ -36,6 +30,17 @@ class Enemy{
     rightEdge(){
         return this.x + this.size >= width;
     }
+
+    hits(){
+        for(let i = lasers.length - 1; i >= 0; i--){
+          for(let j = enemies.length - 1; j >= 0; j--){
+              if(lasers[i].x > enemies[j].x && lasers[i].x < enemies[j].x + this.size &&
+                lasers[i].y > enemies[j].y && lasers[i].y < enemies[j].y + this.size){
+                  lasers.splice(i, 1);
+                }
+          }
+        }
+      }
         
     
 }
