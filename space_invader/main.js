@@ -31,6 +31,15 @@ function draw(){
 
     renderLasers(); 
     renderEnemies();
+
+    for (let i = enemies.length - 1; i >= 0; i--) {
+        for(let j = lasers.length - 1; j >= 0; j--){
+            if (lasers[j].hits(enemies[i])) {
+                enemies.splice(i, 1); 
+                lasers.splice(j, 1);
+            }
+        }
+    } 
  
 } 
 
@@ -53,7 +62,7 @@ function renderLasers(){
      if(lasers[i].isOffScreen()){
         lasers.splice(i,1);
      }
-     checkEnemyHit(lasers,i); 
+    //  checkEnemyHit(lasers,i); 
    }
     
 }
@@ -86,15 +95,15 @@ function dropAndReverseDirection(enemyarr){
 
 
 
-function checkEnemyHit(laser, laserIndex){
-    for(let i = enemies.length - 1; i >= 0; i-- ){
-        if(laser.hits(enemies[i])){
-            Enemy.explosionSound.play();
-            lasers.splice(laserIndex, 1);
-            enemies.splice(i,1);
-            return; 
-        }
-    }   
-}
+// function checkEnemyHit(laser, laserIndex){
+//     for(let i = enemies.length - 1; i >= 0; i-- ){
+//         if(laser.hits(enemies[i])){
+//             Enemy.explosionSound.play();
+//             lasers.splice(laserIndex, 1);
+//             enemies.splice(i,1);
+//             return; 
+//         }
+//     }   
+// }
     
     

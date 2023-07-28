@@ -29,15 +29,16 @@ class Laser{
         return isOffTopOfScreen || isOffSideOfScreen;
     }
 
-    // hits(){
-    //   for(let i = lasers.length - 1; i >= 0; i--){
-    //     for(let j = enemies.length - 1; j >= 0; j--){
-    //         if(lasers[i].x > enemies[j].x && lasers[i].x < enemies[j].x + this.size &&
-    //           lasers[i].y > enemies[j].y && lasers[i].y < enemies[j].y + this.size){
-    //             lasers.splice(i, 1);
-    //           }
-    //     }
-    //   }
-    // }
+    hits(enemy){
+        const distX = Math.abs(this.x - enemy.x - enemy.size / 2);
+        const distY = Math.abs(this.y - enemy.y - enemy.size / 2);
+    
+        if (distX < (this.radius + enemy.size / 2) && distY < (this.radius + enemy.size / 2)) {
+            return true;
+        }
+    
+        return false;
+      }
+
 
 }
