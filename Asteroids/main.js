@@ -1,4 +1,7 @@
 const FIRE_KEY = 32; // space bar
+const RIGHT_ARROW = 39;
+const LEFT_ARROW = 37;
+
 let ship;
 let asteroids = [];
 let lasers = [];
@@ -15,27 +18,25 @@ function setup() {
 
 function draw() {
   background(0);
-  ship.draw();
-  ship.update();
-
  
+  renderShip();
+  renderAsteroids();
+  renderLasers();
+  keyPressed();
+  
 
 }
 
 function renderShip(){
-  
+  ship.draw();
+  ship.update();
 }
 
 function renderLasers(){
-    for(let i = lasers.length - 1; i >= 0; i--){
-        lasers[i].update();
-        lasers[i].draw();
-   
-        if(lasers[i].isOffScreen()){
-           lasers.splice(i,1);
-        }
-       //  checkEnemyHit(lasers,i); 
-      }
+  for(let i = 0; i < lasers.length; i++){
+      lasers[i].update();
+      lasers[i].draw();
+    }
 }
 
 function checkAsteroidHit(laser, laserIndex){
@@ -47,8 +48,7 @@ function shatterAsteroid(asteroidIndex){
 }
 
 function renderAsteroids(){
-    for(let i = asteroids.length - 1; i >= 0; i--){
-        console.log("BNRRR")
+    for(let i = 0; i < asteroids.length; i++){
         asteroids[i].update();
         asteroids[i].draw();
     }
@@ -63,14 +63,14 @@ function keyReleased() {
 }
 
 function keyPressed() {
-  if (keyCode == FIRE_KEY) {
-		ship.shoot();
+  if (keyIsDown(FIRE_KEY)) {
+		lasers.push(ship.shoot())
 
-  } else if (keyCode == RIGHT_ARROW) {
-    
-
-  } else if (keyCode == LEFT_ARROW) {
-
-
+  } else if (keyIsDown(RIGHT_ARROW)) {
+    ship.turn(ship.setRotation(0.1));
+   
+  } else if (keyIsDown(LEFT_ARROW)) {
+    ship.turn(ship.setRotation(-0.1));
+  
   } 
 }

@@ -24,7 +24,7 @@ class Asteroid{
     }
   
       update() {
-  
+        this.pos.add(this.vel)         
       }
   
       draw() {
@@ -49,27 +49,31 @@ class Asteroid{
       }
   
       breakup() {
-              // TODO: This method should create two new asteroids. The
-              // two created asteroids should be put into an array and the
-              // array is what is returned from this method.  
+            // TODO: This method should create two new asteroids. The
+            // two created asteroids should be put into an array and the
+            // array is what is returned from this method.  
       }
   
-      #wrapSideOfScreen(){
-        
+      wrapLeftScreen(){
+        this.pos.x + this.r < 0;
       }
-  
-      #wrapTopBottomScreen(){
-        
+      wrapRightScreen(){
+        this.pos.x + this.r > width;
+      }
+      wrapTopScreen(){
+        this.pos.y + this.r > height;
+      }
+      wrapBottomScreen(){
+        this.pos.y + this.r < height;
       }
   
       screenWrap() {
-          /* 
-              When an asteroid goes offscreen in some direction, it should
-              re-enter on the opposite side of the screen.
-  
-              For example, if an asteroid exits on the top of the screen,
-              it should be re-entering from the bottom while doing so.
-          */
+        if(this.wrapLeftScreen()){
+          this.pos.x += width + this.r;
+        }else if(this.wrapRightScreen()){
+          this.pos.x -= width + this.r;
+        }
+       
         
       }
   }
