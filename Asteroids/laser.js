@@ -17,7 +17,7 @@ class Laser{
     }
   
     hits(asteroid) {
-      // hint: use the dist() function in p5 js   
+      return (this.pos).dist(asteroid.pos) <= asteroid.r;
              
     }
   

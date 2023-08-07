@@ -9,8 +9,7 @@ let lasers = [];
 function setup() {
   createCanvas(windowWidth, windowHeight);
   ship = new Ship();
-  createAsteroids();
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 20; i++) {
     asteroids.push(new Asteroid());
   }
   
@@ -23,7 +22,8 @@ function draw() {
   renderAsteroids();
   renderLasers();
   keyPressed();
-  
+  checkAsteroidHit(); 
+ console.log(asteroids.length); 
 
 }
 
@@ -33,18 +33,33 @@ function renderShip(){
 }
 
 function renderLasers(){
-  for(let i = 0; i < lasers.length; i++){
+  for(let i = lasers.length - 1; i >= 0; i--){
       lasers[i].update();
       lasers[i].draw();
+
+     
     }
 }
 
-function checkAsteroidHit(laser, laserIndex){
-  
+function checkAsteroidHit(){
+  for(let i = asteroids.length - 1; i >= 0; i--){
+    for(let j = lasers.length - 1; j >= 0; j--){
+      if(lasers[j].hits(asteroids[i])){
+        console.log("HIT")
+        lasers.splice(j,1);
+        if(asteroids[i].r > Asteroid.SMALLEST_RADIUS){
+          shatterAsteroid(i);
+        }
+        asteroids.splice(i,1);
+        return;
+      }
+    } 
+  }
 }
 
 function shatterAsteroid(asteroidIndex){
-
+ let newAsteroids = asteroids[asteroidIndex].breakup();
+ asteroids = asteroids.concat(newAsteroids);
 }
 
 function renderAsteroids(){
@@ -54,13 +69,7 @@ function renderAsteroids(){
     }
 }
 
-function createAsteroids(){
 
-}
-
-function keyReleased() {
-	// stop ship from rotating
-}
 
 function keyPressed() {
   if (keyIsDown(FIRE_KEY)) {

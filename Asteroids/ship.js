@@ -45,6 +45,7 @@ class Ship{
 
     shoot(){
         return new Laser(this.pos, this.heading);
+        
     }  
 
   }

@@ -16,7 +16,7 @@ class Asteroid{
       }
   
       this.vel = p5.Vector.random2D();
-      this.total = floor(random(5, 15));
+      this.total = floor(random(5, 20));
       this.offset = [];
       for (let i = 0; i < this.total; i++) {
         this.offset[i] = random(-this.r * 0.5, this.r * 0.5);
@@ -24,7 +24,8 @@ class Asteroid{
     }
   
       update() {
-        this.pos.add(this.vel)         
+        this.pos.add(this.vel)   
+        this.screenWrap();      
       }
   
       draw() {
@@ -48,32 +49,27 @@ class Asteroid{
         endShape(CLOSE);
       }
   
-      breakup() {
-            // TODO: This method should create two new asteroids. The
-            // two created asteroids should be put into an array and the
-            // array is what is returned from this method.  
-      }
+      breakup(){
+        let newAstArr = [];
+        newAstArr.push(new Asteroid(this.pos, this.r))
+        newAstArr.push(new Asteroid(this.pos, this.r))
+        return newAstArr;
   
-      wrapLeftScreen(){
-        this.pos.x + this.r < 0;
-      }
-      wrapRightScreen(){
-        this.pos.x + this.r > width;
-      }
-      wrapTopScreen(){
-        this.pos.y + this.r > height;
-      }
-      wrapBottomScreen(){
-        this.pos.y + this.r < height;
       }
   
       screenWrap() {
-        if(this.wrapLeftScreen()){
-          this.pos.x += width + this.r;
-        }else if(this.wrapRightScreen()){
-          this.pos.x -= width + this.r;
+        if(this.pos.x < -this.r){
+          this.pos.x = width + this.r;
+        }else if(this.pos.x > width + this.r){
+          this.pos.x = -this.r;
         }
-       
+        if(this.pos.y < -this.r){
+          this.pos.y = height + this.r;
+        }else if(this.pos.y > height + this.r){
+          this.pos.y = -this.r;
+        }
         
       }
+
+    
   }
